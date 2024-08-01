@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Uploader</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wrapper {
+        width: 30%;
+        min-width: 200px;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        background-color: yellowgreen;
+        padding: 20px;
+        box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      form {
+        border: 2px dotted blueviolet;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        align-items: center;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <h1>File Uploader JS</h1>
+
+      <form action="#">
+        <input type="file" id="file-input" hidden />
+        <i class="fas fa-cloud-upload-alt"></i>
+        <p>Browse File to Upload</p>
+      </form>
+
+      <section id="selected-file-area"></section>
+    </div>
+
+    <script>
+      const form = document.querySelector("form");
+      const fileInput = document.querySelector("#file-input");
+      const selectedFileArea = document.querySelector("#selected-file-area");
+
+      form.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      fileInput.onchange = ({ target }) => {
+        const file = target.files[0];
+        const fileName = file.name;
+
+        showSelectedFile(fileName);
+      };
+
+      function showSelectedFile(fileName) {
+        const selectedFileHTML = `
+          <div class="row">
+            <i class="fas fa-file-alt"></i>
+            <div class="content">
+              <div class="details">
+                <span class="name">${fileName}</span>
+              </div>
+            </div>
+          </div>`;
+        selectedFileArea.innerHTML = selectedFileHTML;
+      }
+    </script>
+  </body>
+</html>

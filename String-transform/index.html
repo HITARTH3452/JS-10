@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        width: 94%;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+      }
+
+      .transformers {
+        width: 94%;
+        text-align: left;
+        margin: auto;
+      }
+
+      .transformers div {
+        font-size: 1.2rem;
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background-color: beige;
+        position: relative;
+      }
+
+      .transformers label {
+        font-size: 0.75rem;
+        position: absolute;
+        top: -0.75rem;
+        left: 1rem;
+        background-color: black;
+        color: white;
+        padding: 0.25rem;
+      }
+
+      .transformers span {
+        word-break: break-all;
+      }
+
+      @media (min-width: 768px) {
+        input,
+        .transformers {
+          width: 75%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center">
+      <form>
+        <input
+          type="text"
+          id="userInput"
+          autocomplete="off"
+          placeholder="enter the sentence with spaces (alphanumeric)"
+          value="this is a normal sentence to transform"
+        />
+      </form>
+
+      <div class="transformers">
+        <div><label>Lower Case</label><span id="lowercase"></span></div>
+        <div><label>Upper Case</label><span id="uppercase"></span></div>
+        <div><label>Camel Case</label><span id="camelcase"></span></div>
+        <div><label>Pascal Case</label><span id="pascalcase"></span></div>
+        <div><label>Snake Case</label><span id="snakecase"></span></div>
+        <div><label>Kebab Case</label><span id="kebabcase"></span></div>
+        <div><label>Trim</label><span id="trim"></span></div>
+      </div>
+    </div>
+
+    <script>
+      const userInput = document.getElementById("userInput");
+
+      const lowerCaseEl = document.getElementById("lowercase");
+      const upperCaseEl = document.getElementById("uppercase");
+      const camelCaseEl = document.getElementById("camelcase");
+      const pascalCaseEl = document.getElementById("pascalcase");
+      const snakeCaseEl = document.getElementById("snakecase");
+      const kebabCaseEl = document.getElementById("kebabcase");
+      const titleCaseEl = document.getElementById("titlecase");
+      const trimEl = document.getElementById("trim");
+
+      function transform({ text = userInput.value.trim() }) {
+        const camelCase = text
+          .toLowerCase()
+          .split(" ")
+          .reduce(
+            (a, b) => a + b[0]?.toUpperCase() + b.substring(1)?.toLowerCase()
+          );
+
+        lowerCaseEl.textContent = text.toLowerCase();
+        upperCaseEl.textContent = text.toUpperCase();
+        camelCaseEl.textContent = camelCase;
+        pascalCaseEl.textContent = camelCase
+          ? camelCase[0]?.toUpperCase() + camelCase.substring(1)
+          : "";
+        snakeCaseEl.textContent = text.split(" ").join("_");
+        kebabCaseEl.textContent = text.split(" ").join("-");
+        trimEl.textContent = text.split(" ").join("");
+      }
+
+      userInput.addEventListener("input", transform);
+      transform({});
+    </script>
+  </body>
+</html>

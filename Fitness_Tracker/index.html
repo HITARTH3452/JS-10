@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitness</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Workout Type</h1>
+
+      <label for="type">Workout Type</label>
+      <input type="text" id="type" placeholder="Add Your Workout type" />
+
+      <label for="min">Add Time (minutes)</label>
+      <input type="number" id="min" placeholder="add time" />
+
+      <button class="button-33" role="button">Add</button>
+
+      <div id="workout-list">
+        <h2>Workout Log</h2>
+        <ul id="workouts">
+          <!-- Workout items will be displayed here -->
+        </ul>
+      </div>
+      <p id="error-message" style="color: #e74c3c"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
